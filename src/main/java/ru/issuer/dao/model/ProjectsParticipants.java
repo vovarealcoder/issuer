@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Builder
 @ToString
@@ -48,6 +47,7 @@ public class ProjectsParticipants {
     public void setProject(Projects project) {
         this.project = project;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_user")
     public Users getUser() {
@@ -57,6 +57,7 @@ public class ProjectsParticipants {
     public void setUser(Users user) {
         this.user = user;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_role")
     public Roles getRoles() {

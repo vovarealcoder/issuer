@@ -4,15 +4,11 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnTransformer;
-import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Builder
 @ToString
@@ -20,10 +16,10 @@ import java.util.Objects;
 @Entity
 public class Users {
     private int idUser;
-    @Size(min = 6, max = 18,message = "Login length must be from 6 to 18 characters")
-    @Pattern(regexp = "[a-zA-Z0-9\\-]+",message = "Login must contains from alphabet characters, numeric ans -")
+    @Size(min = 6, max = 18, message = "Login length must be from 6 to 18 characters")
+    @Pattern(regexp = "[a-zA-Z0-9\\-]+", message = "Login must contains from alphabet characters, numeric ans -")
     private String login;
-    @Size(min = 8, max = 18,message = "Password must have length from 8 to 18 characters")
+    @Size(min = 8, max = 18, message = "Password must have length from 8 to 18 characters")
     private String password;
     private String name;
     private Timestamp registrated;
@@ -44,6 +40,9 @@ public class Users {
         this.avatar = avatar;
         this.role = role;
         this.lastLogin = lastLogin;
+    }
+
+    public Users() {
     }
 
     @Id
@@ -89,7 +88,7 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "registrated", nullable = false,insertable = false)
+    @Column(name = "registrated", nullable = false, insertable = false)
     public Timestamp getRegistrated() {
         return registrated;
     }
@@ -118,20 +117,18 @@ public class Users {
         this.activated = activated;
     }
 
-
     @OneToOne
-    @JoinColumn(name = "id_user",referencedColumnName = "user_loaded", insertable = false)
+    @JoinColumn(name = "id_user", referencedColumnName = "user_loaded", insertable = false)
     public Avatar getAvatar() {
         return avatar;
     }
-
 
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
 
     @ManyToOne
-    @JoinColumn(name = "role",referencedColumnName = "id_role")
+    @JoinColumn(name = "role", referencedColumnName = "id_role")
     public Roles getRole() {
         return role;
     }
@@ -148,8 +145,5 @@ public class Users {
 
     public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
-    }
-
-    public Users() {
     }
 }

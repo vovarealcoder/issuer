@@ -16,7 +16,6 @@ import ru.issuer.dao.manager.UserManager;
 import ru.issuer.dao.model.Users;
 
 import javax.validation.Valid;
-import java.net.BindException;
 import java.util.Locale;
 
 /**

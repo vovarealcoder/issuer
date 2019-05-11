@@ -5,31 +5,27 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ru.issuer.dao.model.Roles;
 import ru.issuer.dao.model.Users;
 import ru.issuer.dao.repository.DaoException;
 import ru.issuer.dao.repository.UserRepository;
 
-import java.util.Date;
-import java.sql.Timestamp;
-
 @Component
 public class UserManager {
+
+    private UserRepository repository;
 
     @Bean("defUserManager")
     UserManager getMgr() {
         return new UserManager();
     }
 
-    private UserRepository repository;
-
-    public Users getUser(String login){
+    public Users getUser(String login) {
         return repository.getUserByLogin(login);
     }
 
 
-    public Users getUser(String login,String password){
-        return repository.getUserByLoginPassword(login,password);
+    public Users getUser(String login, String password) {
+        return repository.getUserByLoginPassword(login, password);
     }
 
     public Users getUser(int id) {
@@ -49,7 +45,7 @@ public class UserManager {
 //            int user = repository.create(build);
 //        } catch (DaoException e) {
 //        }
-       // throw new IllegalArgumentException();
+        // throw new IllegalArgumentException();
     }
 
     @Autowired

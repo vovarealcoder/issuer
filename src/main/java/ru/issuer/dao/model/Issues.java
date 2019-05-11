@@ -8,7 +8,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.Set;
 
 @Builder
@@ -163,7 +162,6 @@ public class Issues {
     }
 
 
-
     @OneToMany
     @JoinColumn(name = "id_issue")
     public Set<Actions> getActions() {
@@ -183,6 +181,7 @@ public class Issues {
     public void setFiles(Set<Files> files) {
         this.files = files;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_project")
     public Projects getProject() {
@@ -194,7 +193,7 @@ public class Issues {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_created",referencedColumnName = "id_user")
+    @JoinColumn(name = "id_created", referencedColumnName = "id_user")
     public Users getCreatedUser() {
         return createdUser;
     }
@@ -202,6 +201,7 @@ public class Issues {
     public void setCreatedUser(Users createdUser) {
         this.createdUser = createdUser;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_version")
     public Versions getVersion() {
@@ -211,8 +211,9 @@ public class Issues {
     public void setVersion(Versions version) {
         this.version = version;
     }
+
     @ManyToOne
-    @JoinColumn(name = "id_performed",referencedColumnName = "id_user")
+    @JoinColumn(name = "id_performed", referencedColumnName = "id_user")
     public Users getPerformedUser() {
         return performedUser;
     }
@@ -220,8 +221,9 @@ public class Issues {
     public void setPerformedUser(Users performedUser) {
         this.performedUser = performedUser;
     }
+
     @ManyToOne
-    @JoinColumn(name = "status_id",referencedColumnName = "id_status")
+    @JoinColumn(name = "status_id", referencedColumnName = "id_status")
     public Statuses getStatus() {
         return status;
     }
@@ -229,8 +231,9 @@ public class Issues {
     public void setStatus(Statuses status) {
         this.status = status;
     }
+
     @ManyToOne
-    @JoinColumn(name = "tracker_id",referencedColumnName = "id_tracker")
+    @JoinColumn(name = "tracker_id", referencedColumnName = "id_tracker")
     public Trackers getTracker() {
         return tracker;
     }
@@ -238,8 +241,9 @@ public class Issues {
     public void setTracker(Trackers tracker) {
         this.tracker = tracker;
     }
+
     @ManyToOne
-    @JoinColumn(name = "category_id",referencedColumnName = "id_category")
+    @JoinColumn(name = "category_id", referencedColumnName = "id_category")
     public Categories getCategory() {
         return category;
     }
@@ -247,8 +251,9 @@ public class Issues {
     public void setCategory(Categories category) {
         this.category = category;
     }
+
     @ManyToOne
-    @JoinColumn(name = "parent_issue",referencedColumnName = "id_issue")
+    @JoinColumn(name = "parent_issue", referencedColumnName = "id_issue")
     public Issues getRootIssue() {
         return rootIssue;
     }

@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Builder
 @ToString
@@ -13,17 +12,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "task_link", schema = "public", catalog = "cdissuer")
 public class TaskLink {
+    private int idLink;
+    private Boolean copied;
+    private Issues oneIssue;
+    private Issues twoIssue;
     public TaskLink(int idLink, Boolean copied, Issues oneIssue, Issues twoIssue) {
         this.idLink = idLink;
         this.copied = copied;
         this.oneIssue = oneIssue;
         this.twoIssue = twoIssue;
     }
-
-    private int idLink;
-    private Boolean copied;
-    private Issues oneIssue;
-    private Issues twoIssue;
 
     public TaskLink() {
     }
@@ -49,7 +47,7 @@ public class TaskLink {
     }
 
     @ManyToOne
-    @JoinColumn(name = "two",referencedColumnName = "id_issue")
+    @JoinColumn(name = "two", referencedColumnName = "id_issue")
     public Issues getTwoIssue() {
         return twoIssue;
     }
@@ -57,8 +55,9 @@ public class TaskLink {
     public void setTwoIssue(Issues twoIssue) {
         this.twoIssue = twoIssue;
     }
+
     @ManyToOne
-    @JoinColumn(name = "one",referencedColumnName = "id_issue")
+    @JoinColumn(name = "one", referencedColumnName = "id_issue")
     public Issues getOneIssue() {
         return oneIssue;
     }

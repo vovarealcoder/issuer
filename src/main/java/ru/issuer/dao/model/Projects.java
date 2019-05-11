@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.Set;
 
 @Builder
@@ -89,6 +88,7 @@ public class Projects {
     public void setCategoriee(Set<Categories> categoriee) {
         this.categoriee = categoriee;
     }
+
     @OneToMany
     @JoinColumn(name = "id_version")
     public Set<Versions> getVersions() {
@@ -98,6 +98,7 @@ public class Projects {
     public void setVersions(Set<Versions> versions) {
         this.versions = versions;
     }
+
     @OneToMany
     @JoinColumn(name = "id_participant")
     public Set<ProjectsParticipants> getProjectsParticipants() {

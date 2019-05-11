@@ -6,7 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Builder
 @ToString
@@ -84,6 +83,7 @@ public class Work {
     public void setIssue(Issues issue) {
         this.issue = issue;
     }
+
     @ManyToOne
     @JoinColumn(name = "work_type", referencedColumnName = "id_work_type")
     public WorkType getWorkType() {
@@ -93,6 +93,7 @@ public class Work {
     public void setWorkType(WorkType workType) {
         this.workType = workType;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_user")
     public Users getUser() {

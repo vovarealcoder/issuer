@@ -34,6 +34,7 @@ public class Subscriptions {
     public void setUser(Users user) {
         this.user = user;
     }
+
     @ManyToOne
     @JoinColumn(name = "id_issue")
     public Issues getIssue() {
@@ -45,7 +46,7 @@ public class Subscriptions {
     }
 
     @Id
-    @Column(name = "id_subscription",nullable = false)
+    @Column(name = "id_subscription", nullable = false)
     public Integer getIdSubscription() {
         return idSubscription;
     }

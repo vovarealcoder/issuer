@@ -6,7 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Builder
 @ToString
@@ -14,7 +13,14 @@ import java.util.Objects;
 @Entity
 public class Actions {
     private int idAction;
-
+    private int transaction;
+    private Integer changeType;
+    private String oldValue;
+    private String newValue;
+    private String message;
+    private Timestamp time;
+    private Issues issue;
+    private Users user;
     public Actions(int idAction, int transaction, Integer changeType, String oldValue, String newValue, String message, Timestamp time, Issues issue, Users user) {
         this.idAction = idAction;
         this.transaction = transaction;
@@ -26,15 +32,6 @@ public class Actions {
         this.issue = issue;
         this.user = user;
     }
-
-    private int transaction;
-    private Integer changeType;
-    private String oldValue;
-    private String newValue;
-    private String message;
-    private Timestamp time;
-    private Issues issue;
-    private Users user;
 
     public Actions() {
     }
@@ -110,7 +107,7 @@ public class Actions {
     }
 
     @ManyToOne
-    @JoinColumn(name="id_issue", nullable=false)
+    @JoinColumn(name = "id_issue", nullable = false)
     public Issues getIssue() {
         return issue;
     }
@@ -118,8 +115,9 @@ public class Actions {
     public void setIssue(Issues issue) {
         this.issue = issue;
     }
+
     @ManyToOne
-    @JoinColumn(name="id_user", nullable=false)
+    @JoinColumn(name = "id_user", nullable = false)
     public Users getUser() {
         return user;
     }

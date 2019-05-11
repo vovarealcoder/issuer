@@ -2,11 +2,9 @@ package ru.issuer.dao.model;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Builder
 @ToString

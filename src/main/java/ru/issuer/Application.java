@@ -1,7 +1,6 @@
 package ru.issuer;
 
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -9,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.issuer.dao.manager.UserManager;
 import ru.issuer.dao.model.Users;
-import ru.issuer.dao.repository.DaoException;
-import ru.issuer.dao.repository.UserRepository;
 
 import java.util.List;
 

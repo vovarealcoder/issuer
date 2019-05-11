@@ -83,7 +83,7 @@ public class Avatar {
 
 
     @OneToOne
-    @JoinColumn(name = "user_loaded",referencedColumnName = "id_user")
+    @JoinColumn(name = "user_loaded", referencedColumnName = "id_user")
     public Users getUserLoaded() {
         return userLoaded;
     }
