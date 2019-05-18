@@ -6,8 +6,6 @@ import lombok.ToString;
 import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Builder
@@ -16,10 +14,7 @@ import java.sql.Timestamp;
 @Entity
 public class Users {
     private int idUser;
-    @Size(min = 6, max = 18, message = "Login length must be from 6 to 18 characters")
-    @Pattern(regexp = "[a-zA-Z0-9\\-]+", message = "Login must contains from alphabet characters, numeric ans -")
     private String login;
-    @Size(min = 8, max = 18, message = "Password must have length from 8 to 18 characters")
     private String password;
     private String name;
     private Timestamp registrated;

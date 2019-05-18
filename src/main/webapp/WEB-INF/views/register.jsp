@@ -36,7 +36,7 @@
             </div>
 
             <%--@elvariable id="user" type="ru.issuer.dao.model.Users"--%>
-            <form:form method="post" modelAttribute="user" action="login" class="login100-form validate-form">
+            <form:form method="post" modelAttribute="user" action="register" class="login100-form validate-form">
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -50,10 +50,19 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                 </div>
-                <form:errors path="password" cssClass="alert-validate"/>
+                <form:errors path="login" cssClass="alert-validate"/>
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
 
                     <form:password class="input100" path="password" placeholder="Password"/>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+                </div>
+                <form:errors path="login" cssClass="alert-validate"/>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+
+                    <form:password class="input100" path="password-retype" placeholder="Password"/>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

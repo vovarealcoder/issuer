@@ -12,6 +12,10 @@
     <title>Title</title>
 </head>
 <body>
+<c:forEach items="${sessionScope}" var="entry">
+    ${entry.key} = ${entry.value}<br>
+</c:forEach>
+
 <p>${currentUser}</p>
 <c:if test="${not empty currentUser.name}">
     <p> Hello ${currentUser.name}</p>
