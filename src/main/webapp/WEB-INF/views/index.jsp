@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vova
@@ -12,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+<p>${message}</p>
 <c:forEach items="${sessionScope}" var="entry">
     ${entry.key} = ${entry.value}<br>
 </c:forEach>
@@ -21,7 +23,7 @@
     <p> Hello ${currentUser.name}</p>
 </c:if>
 <c:if test="${empty currentUser.name}">
-    <p> wrong auth</p>
+    <p><spring:message code="wrong"/></p>
 </c:if>
 </body>
 </html>

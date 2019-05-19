@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -38,13 +39,13 @@
             <%--@elvariable id="user" type="ru.issuer.dao.model.Users"--%>
             <form:form method="post" modelAttribute="user" action="login" class="login100-form validate-form">
 					<span class="login100-form-title">
-						Member Login
+						<spring:message code="memberLogin"/>
 					</span>
                 <form:errors path="login" cssClass="alert-validate"/>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-
-                    <form:input class="input100" path="login" placeholder="Email"/>
+                    <spring:message code="login" var="loginMessage"/>
+                    <form:input class="input100" path="login" placeholder="${loginMessage}"/>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -52,8 +53,8 @@
                 </div>
                 <form:errors path="password" cssClass="alert-validate"/>
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
-
-                    <form:password class="input100" path="password" placeholder="Password"/>
+                    <spring:message code="password" var="passMessage"/>
+                    <form:password class="input100" path="password" placeholder="${passMessage}"/>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -61,22 +62,23 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <input type="submit" class="login100-form-btn" value="Login"/>
+                    <spring:message code="submit" var="submitMessage"/>
+                    <input type="submit" class="login100-form-btn" value="${submitMessage}"/>
 
                 </div>
 
                 <div class="text-center p-t-12">
 						<span class="txt1">
-							Forgot
+							<spring:message code="forgot"/>
 						</span>
                     <a class="txt2" href="#">
-                        Username / Password?
+                        <spring:message code="loginPass"/>
                     </a>
                 </div>
 
                 <div class="text-center p-t-136">
                     <a class="txt2" href="#">
-                        Create your Account
+                        <spring:message code="register"/>
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>

@@ -14,10 +14,10 @@ import javax.validation.constraints.Size;
 public class AuthModel implements WebModel<Users> {
 
 
-    @Size(min = 5, max = 18, message = "Login length must be from 6 to 18 characters")
-    @Pattern(regexp = "[a-zA-Z0-9\\-]+", message = "Login must contains from alphabet characters, numeric ans -")
+    @Size(min = 5, max = 18, message = "{loginLen}")
+    @Pattern(regexp = "[a-zA-Z0-9\\-]+", message = "{loginChar}")
     private String login;
-    @Size(min = 5, max = 18, message = "Password must have length from 8 to 18 characters")
+    @Size(min = 5, max = 18, message = "{passwordLen}")
     private String password;
 
     public AuthModel() {

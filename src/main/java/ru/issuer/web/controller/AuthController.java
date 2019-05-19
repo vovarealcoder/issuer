@@ -1,4 +1,4 @@
-package ru.issuer.web;
+package ru.issuer.web.controller;
 
 
 import org.slf4j.Logger;
