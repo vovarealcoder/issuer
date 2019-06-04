@@ -36,7 +36,7 @@ public class AuthController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login1", method = RequestMethod.GET)
     public ModelAndView home(@ModelAttribute("sessionModel") SessionModel sessionModel, Locale locale) {
         logger.info("Welcome home! The client locale is {}.", locale);
         if (sessionModel.isAutorized()) {
@@ -48,13 +48,13 @@ public class AuthController {
         return new ModelAndView("login", "user", new AuthModel());
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout1", method = RequestMethod.GET)
     public String logout(SessionStatus sessionStatus) {
         sessionStatus.setComplete();
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login1", method = RequestMethod.POST)
     public String login(@ModelAttribute("sessionModel") SessionModel sessionModel, @Valid @ModelAttribute(name = "user") AuthModel authModel, BindingResult bindingResult, Model modelAndView) {
         if (bindingResult.hasErrors()) {
             return "login";

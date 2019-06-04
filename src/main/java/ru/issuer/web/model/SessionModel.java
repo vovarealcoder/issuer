@@ -7,13 +7,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import ru.issuer.dao.model.Users;
 
+import java.io.Serializable;
+
 @Component
 @Builder
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-public class SessionModel {
+public class SessionModel implements Serializable {
     private Users user;
     private String sessionId;
     private boolean autorized;
