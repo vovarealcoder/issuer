@@ -3,7 +3,6 @@ package ru.issuer.web.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +39,7 @@ public class RegisterController {
     public String register(@ModelAttribute("sessionModel") SessionModel sessionModel, @Valid @ModelAttribute("regUser") RegisterModel registerModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes attributes) {
         if (!bindingResult.hasErrors()) {
             try {
-                int insertUser = manager.insertUser(registerModel.toORMModel());
+                int insertUser = manager.createUser(registerModel.toORMModel());
                 Users user = manager.getUser(insertUser);
                 modelAndView.addObject("currentUser", user);
                 sessionModel.setAutorized(true);
@@ -61,7 +60,7 @@ public class RegisterController {
         return new SessionModel();
     }
 
-    @Qualifier("defUserManager")
+
     @Autowired
     public void setManager(UserManager manager) {
         this.manager = manager;

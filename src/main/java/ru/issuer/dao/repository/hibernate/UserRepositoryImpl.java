@@ -1,12 +1,12 @@
 package ru.issuer.dao.repository.hibernate;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.issuer.dao.model.Users;
 import ru.issuer.dao.repository.UserRepository;
 
 import java.util.List;
 
-@Component
+@Repository
 public class UserRepositoryImpl extends BaseRepositoryImpl<Users> implements UserRepository {
 
 

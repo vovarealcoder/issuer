@@ -5,10 +5,13 @@
         xmlns:beans="http://www.springframework.org/schema/beans"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:sec="http://www.springframework.org/schema/security"
         xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+ http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven/>
@@ -55,5 +58,7 @@
 
     </interceptors>
 
+    <sec:global-method-security
+            pre-post-annotations="enabled" proxy-target-class="true"/>
 
 </beans:beans>

@@ -37,7 +37,7 @@
             </div>
 
             <%--@elvariable id="user" type="ru.issuer.dao.model.Users"--%>
-            <form:form method="post" modelAttribute="user" action="login" class="login100-form validate-form">
+            <form:form method="post" modelAttribute="user" action="login1" class="login100-form validate-form">
 					<span class="login100-form-title">
 						<spring:message code="memberLogin"/>
 					</span>
