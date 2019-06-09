@@ -23,9 +23,30 @@
     <resources mapping="/resources/**" location="/resources/"/>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/WEB-INF/views/"/>
-        <beans:property name="suffix" value=".jsp"/>
+    <!--
+        <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <beans:property name="prefix" value="/WEB-INF/views/"/>
+            <beans:property name="suffix" value=".jsp"/>
+        </beans:bean>
+    -->
+    <beans:bean id="templateResolver"
+                class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <beans:property name="prefix" value="/WEB-INF/templates/"/>
+        <beans:property name="suffix" value=".html"/>
+        <beans:property name="characterEncoding" value="UTF-8"/>
+        <beans:property name="templateMode" value="HTML5"/>
+    </beans:bean>
+
+    <beans:bean id="templateEngine"
+                class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <beans:property name="templateResolver" ref="templateResolver"/>
+    </beans:bean>
+
+    <beans:bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <beans:property name="templateEngine" ref="templateEngine"/>
+        <beans:property name="order" value="1"/>
+        <beans:property name="characterEncoding" value="UTF-8"/>
+        <!--<beans:property name="viewNames" value="*.html,*.xhtml" />-->
     </beans:bean>
 
     <beans:bean id="messageSource"

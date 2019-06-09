@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<p th:text="${message}">message </p>
+<table>
+    <TR th:each="entry : ${session}">
+        <td th:text="${entry}">Onions</td>
+    </TR>
+</table>
+
+<p th:text="${currentUser}"> curr user</p>
+<div th:if="${currentUser != null}" th:text="${currentUser.name}">
+    <p> not defined var </p>
+</div>
+<div th:if="${currentUser == null }" th:text="#{wrong}">
+</div>
+
+<div th:if="${currentUser != null}" th:text="${currentUser.name}">
+    <p> not defined var </p>
+</div>
+<form id="logout" method="post" th:action="@{/logoutUrl}">
+    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
+           type="hidden"/>
+</form>
+<a href="#" onclick="document.getElementById('logout').submit();">Logout</a>
+</body>
+</html>
