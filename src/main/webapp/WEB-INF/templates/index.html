@@ -13,7 +13,7 @@
 </table>
 
 <p th:text="${currentUser}"> curr user</p>
-<div th:if="${currentUser != null}" th:text="${currentUser.name}">
+<div th:if="${currentUser != null}" th:text="'hello, '+${currentUser.name}+'!'">
     <p> not defined var </p>
 </div>
 <div th:if="${currentUser == null }" th:text="#{wrong}">
@@ -22,7 +22,7 @@
 <div th:if="${currentUser != null}" th:text="${currentUser.name}">
     <p> not defined var </p>
 </div>
-<form id="logout" method="post" th:action="@{/logoutUrl}">
+<form id="logout" method="post" th:action="@{/logout}">
     <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
            type="hidden"/>
 </form>

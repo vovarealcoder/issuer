@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<form method="post" th:action="#{/register}" th:object="${regUser}">
+					<span class="login100-form-title">
+						Member Login
+					</span>
+
+
+    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+        <p th:errors="*{login}" th:if="${#fields.hasErrors('login')}">login errors</p>
+        <input class="input100" placeholder="login" th:field="*{login}"/>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <p th:errors="*{password}" th:if="${#fields.hasErrors('password')}">password errors</p>
+        <input class="input100" placeholder="password" th:field="*{password}" type="password"/>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <p th:errors="*{passwordRetype}" th:if="${#fields.hasErrors('passwordRetype')}">passwordRetype errors</p>
+        <input class="input100" placeholder="passwordRetype" th:field="*{passwordRetype}" type="password"/>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <p th:errors="*{name}" th:if="${#fields.hasErrors('name')}">name errors</p>
+        <input class="input100" placeholder="name" th:field="*{name}"/>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <p th:errors="*{email}" th:if="${#fields.hasErrors('email')}">email errors</p>
+        <input class="input100" placeholder="email" th:field="*{email}"/>
+    </div>
+
+    <div class="container-login100-form-btn">
+        <input class="login100-form-btn" type="submit" value="Register"/>
+
+    </div>
+</form>
+
+
+</body>
+</html>
