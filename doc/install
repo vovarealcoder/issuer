@@ -1,0 +1,4 @@
+положить postgresql-42.2.5.jar в /glassfish4/glass…in1/lib/databases
+поставить пакет postgresql11-contrib
+подключиться к подгресу через psql, выбрать базу данных, выполнить
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
