@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Заголовок</title>
+    <link rel="stylesheet" href="../../resources/css/main.css"/>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div id="wrapper"  th:fragment="header(title)" >
+<div id="top-menu">
+    <div id="account" th:if="${@securityService.getCurrentUser()==nul}">
+    <ul>
+        <li><a href="#">Вход</a></li>
+        <li><a href="#">Регистрация</a></li>
+    </ul></div>
+        <div id="account" th:if="${@securityService.getCurrentUser()!=nul}">
+                <form id="logout" method="post" th:action="@{/logout}">
+                    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
+                           type="hidden"/>
+                </form>
+                <ul>
+
+                <li><a href="#">Мой профиль</a></li>
+                    <li><a href="#">Рабочий отчет</a></li>
+                    <li><a href="#" onclick="document.getElementById('logout').submit();">Выход</a></li>
+                </ul></div>
+</div>
+<div id="header">
+    <h1 th:text="${title}">CDIssuer</h1>
+</div>
+    <div id="proj-menu">
+        <ul><li><a href="#">Проекты</a> </li><li><a href="#">Задачи</a> </li></ul>
+    </div>
+</div>
+</body>
+</html>

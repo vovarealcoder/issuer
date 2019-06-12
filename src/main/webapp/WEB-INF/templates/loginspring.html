@@ -6,7 +6,7 @@
     <link href="../../resources/css/main.css" rel="stylesheet" th:href="@{/resources/css/main.css}"/>
 </head>
 <body>
-
+<div th:replace="header::header('CD ISSueR Custom')"></div>
 <div id="login-form">
     <label th:if="${error!=null}" th:text="${error}">Ошибка входа</label>
     <form action="#" method="post" name="login_form" th:action="@{/login}">
@@ -18,9 +18,12 @@
         <label th:text="#{loginform.field.password}">Пароль</label>
         <label> <input class="element" name="password" type="password" value=""/></label>
 
-        <input id="login-submit" name="submit" th:value="#{login.field.submit}" type="submit" value="Вход"/>
+        <input id="login-submit" name="submit" th:value="#{loginform.field.submit}" type="submit" value="Вход"/>
 
     </form>
 </div>
+<div th:replace="footer :: footer_fragment"><footer>
+    © 2019 - Powered by CDIssuer
+</footer></div>
 </body>
 </html>

@@ -4,6 +4,7 @@ body {
     font-size: 12px;
     color: #333;
     background: #32383e;
+    margin: 0;
 
 }
 
@@ -63,4 +64,101 @@ input, select {
 
 .element:focus {
     border: #1e7e34 4px;
+}
+
+#header {
+
+    min-height: 5.3em;
+    margin: 0;
+    background-color: #5897fb;
+    color: #f8f8f8;
+    padding: 4px 8px 20px 6px;
+    position: relative;
+
+}
+
+#top-menu {
+
+    background: #28a745;
+    color: #fff;
+    height: 1.8em;
+    padding: 2px 2px 0px 6px;
+
+}
+
+#account {
+
+    float: right;
+
+}
+
+#top-menu a {
+
+    color: #fff;
+    margin-right: 8px;
+    font-weight: bold;
+
+}
+
+footer {
+    margin-top: -77px; /* Поднимаем вверх */
+    overflow: auto; /* Отменяем схлопывающиеся отступы */
+    position: relative; /* Относительное позиционирование */
+}
+.footer-bg {
+
+    margin-top: 80px; /* Сдвигаем вниз */
+}
+
+.copyright {
+    padding: 0 10px 10px; /* Поля */
+    margin: auto; /* Выравнивание по центру */
+    color: #fff; /* Цвет текста */
+    text-align: center;
+}
+#proj-menu {
+    font-weight: bold;
+    background: #0c5460;
+    color: white;
+    overflow: auto;
+    padding: 5px;
+    margin: 0;
+
+}
+
+#proj-menu li {
+    float: left;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    white-space: nowrap;
+
+}
+#proj-menu ul {
+    margin: 0;
+    padding: 0;
+}
+#proj-menu a {
+
+    color: #fff;
+    margin-right: 8px;
+    font-weight: bold;
+
+}
+#top-menu li {
+    float: left;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0 0px 0px 0px;
+    white-space: nowrap;
+}
+#top-menu ul {
+     margin: 0;
+     padding: 0;
+ }
+#wrapper {
+
+    /*overflow: hidden;*/
+    margin: 0;
+
 }

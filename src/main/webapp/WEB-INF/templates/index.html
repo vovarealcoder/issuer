@@ -1,10 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title th:text="#{index.title}">Главная страница</title>
     <meta charset="UTF-8"/>
+    <link href="../../resources/css/main.css" rel="stylesheet" th:href="@{/resources/css/main.css}"/>
 </head>
 <body>
+<div th:replace="header::header(#{index.header.title})"></div>
 <p th:text="${message}">message </p>
 <table>
     <TR th:each="entry : ${session}">
@@ -12,14 +14,14 @@
     </TR>
 </table>
 
-<p th:text="${currentUser}"> curr user</p>
-<div th:if="${currentUser != null}" th:text="'hello, '+${currentUser.name}+'!'">
+<p th:text="${@securityService.getCurrentUser()}"> curr user</p>
+<div th:if="${@securityService.getCurrentUser() != null}" th:text="'hello, '+${@securityService.getCurrentUser().name}+'!'">
     <p> not defined var </p>
 </div>
-<div th:if="${currentUser == null }" th:text="#{wrong}">
+<div th:if="${@securityService.getCurrentUser() == null }" th:text="#{wrong}">
 </div>
 
-<div th:if="${currentUser != null}" th:text="${currentUser.name}">
+<div th:if="${@securityService.getCurrentUser() != null}" th:text="${@securityService.getCurrentUser().name}">
     <p> not defined var </p>
 </div>
 <form id="logout" method="post" th:action="@{/logout}">
