@@ -38,7 +38,7 @@ public class RegisterModel implements WebModel<Users> {
     }
 
     @AssertTrue(message = "Password and password confirm must be equals")
-    private boolean passwordRetypeSuccess() {
+    private boolean getPasswordRetypeSuccess() {
         return password != null && password.equals(passwordRetype);
     }
 

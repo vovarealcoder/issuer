@@ -8,20 +8,20 @@
 <body>
 <div id="wrapper"  th:fragment="header(title)" >
 <div id="top-menu">
-    <div id="account" th:if="${@securityService.getCurrentUser()==nul}">
+    <div id="account" th:if="${@securityService.getCurrentUser()==null}">
     <ul>
-        <li><a href="#">Вход</a></li>
-        <li><a href="#">Регистрация</a></li>
+        <li><a href="#" th:href="@{/loginspring}">Вход</a></li>
+        <li><a href="#" th:href="@{/register}">Регистрация</a></li>
     </ul></div>
-        <div id="account" th:if="${@securityService.getCurrentUser()!=nul}">
+    <div id="account" th:if="${@securityService.getCurrentUser()!=null}">
                 <form id="logout" method="post" th:action="@{/logout}">
                     <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
                            type="hidden"/>
                 </form>
                 <ul>
 
-                <li><a href="#">Мой профиль</a></li>
-                    <li><a href="#">Рабочий отчет</a></li>
+                    <li><a href="#" th:href="@{/issuer/profile}">Мой профиль</a></li>
+                    <li><a href="#" th:href="@{/issuer/worklist}">Рабочий отчет</a></li>
                     <li><a href="#" onclick="document.getElementById('logout').submit();">Выход</a></li>
                 </ul></div>
 </div>
@@ -29,7 +29,12 @@
     <h1 th:text="${title}">CDIssuer</h1>
 </div>
     <div id="proj-menu">
-        <ul><li><a href="#">Проекты</a> </li><li><a href="#">Задачи</a> </li></ul>
+        <ul>
+            <li><a href="#" th:href="@{/issuer/projects}">Проекты</a></li>
+            <li><a href="#" th:href="@{/issuer/tasks}">Задачи</a></li>
+            <li><a href="#" th:href="@{/issuer/actions}">Действия</a></li>
+            <li><a href="#" th:href="@{/issuer/works}">Трудозатраты</a></li>
+        </ul>
     </div>
 </div>
 </body>

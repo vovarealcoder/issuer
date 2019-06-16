@@ -8,8 +8,7 @@
                                  http://www.springframework.org/schema/security/spring-security-4.2.xsd"
 >
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/upload" access="isAuthenticated()"/>
-        <intercept-url pattern="/" access="isAuthenticated()"/>
+        <intercept-url pattern="/issuer/*" access="isAuthenticated()"/>
         <form-login login-page="/loginspring"
                     default-target-url="/"
                     authentication-failure-url="/loginspring?error=true"
