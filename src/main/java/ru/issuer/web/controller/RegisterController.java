@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.issuer.dao.manager.UserManager;
 import ru.issuer.dao.model.Users;
-import ru.issuer.dao.repository.DaoException;
 import ru.issuer.web.model.RegisterModel;
 import ru.issuer.web.model.SessionModel;
 
@@ -38,19 +37,16 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute("sessionModel") SessionModel sessionModel, @Valid @ModelAttribute("regUser") RegisterModel registerModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes attributes) {
         if (!bindingResult.hasErrors()) {
-            try {
-                int insertUser = manager.createUser(registerModel.toORMModel());
-                Users user = manager.getUser(insertUser);
-                modelAndView.addObject("currentUser", user);
-                sessionModel.setAutorized(true);
-                sessionModel.setUser(user);
-                String sessionId = Base64.getEncoder().encodeToString((System.currentTimeMillis() + user.getLogin()).getBytes());
-                sessionModel.setSessionId(sessionId);
-                attributes.addFlashAttribute("message", "success register");
-                return "redirect:/";
-            } catch (DaoException e) {
-                logger.error(e.getMessage(), e);
-            }
+            int insertUser = manager.createUser(registerModel.toORMModel());
+            Users user = manager.getUser(insertUser);
+            modelAndView.addObject("currentUser", user);
+            sessionModel.setAutorized(true);
+            sessionModel.setUser(user);
+            String sessionId = Base64.getEncoder().encodeToString((System.currentTimeMillis() + user.getLogin()).getBytes());
+            sessionModel.setSessionId(sessionId);
+            attributes.addFlashAttribute("message", "success register");
+            return "redirect:/";
+
         }
         return "register";
     }

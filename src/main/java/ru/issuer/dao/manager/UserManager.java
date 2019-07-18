@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.issuer.dao.model.Users;
-import ru.issuer.dao.repository.DaoException;
 import ru.issuer.dao.repository.UserRepository;
 
 @Component
@@ -28,7 +27,7 @@ public class UserManager {
     }
 
     @Transactional
-    public int createUser(Users user) throws DaoException {
+    public int createUser(Users user) {
         return repository.create(user);
     }
 

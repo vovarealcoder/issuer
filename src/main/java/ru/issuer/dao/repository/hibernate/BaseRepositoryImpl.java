@@ -6,11 +6,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import ru.issuer.dao.repository.BaseRepository;
-import ru.issuer.dao.repository.DaoException;
 
-import javax.persistence.NoResultException;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -25,13 +22,10 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
     }
 
     @Override
-    public int create(T entity) throws DaoException {
+    public int create(T entity) {
         Session session = sessionFactory.getCurrentSession();
         Serializable savedId = session.save(entity);
-        if (savedId != null) {
-            return (Integer) savedId;
-        }
-        throw new DaoException("Insertion error");
+        return (Integer) savedId;
     }
 
 
@@ -46,21 +40,15 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
     }
 
     T querySingle(String queryString, Class<T> clazz, Object... parameter) {
-        try {
-            Query<T> query = createQuery(queryString, clazz, parameter);
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        Query<T> query = createQuery(queryString, clazz, parameter);
+        return query.getSingleResult();
+
     }
 
     List<T> queryList(String queryString, Class<T> clazz, Object... parameter) {
-        try {
-            Query<T> query = createQuery(queryString, clazz, parameter);
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return Collections.emptyList();
-        }
+        Query<T> query = createQuery(queryString, clazz, parameter);
+        return query.getResultList();
+
     }
 
     private Query<T> createQuery(String queryString, Class<T> clazz, Object[] parameter) {
