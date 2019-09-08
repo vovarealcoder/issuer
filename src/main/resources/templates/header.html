@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Заголовок</title>
-    <link rel="stylesheet" href="../../resources/css/main.css"/>
+    <link href="../static/css/main.css" rel="stylesheet"/>
     <meta charset="UTF-8"/>
 </head>
 <body>
@@ -15,8 +15,6 @@
     </ul></div>
     <div id="account" th:if="${@securityService.getCurrentUser()!=null}">
                 <form id="logout" method="post" th:action="@{/logout}">
-                    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}"
-                           type="hidden"/>
                 </form>
                 <ul>
 

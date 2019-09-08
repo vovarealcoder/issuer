@@ -1,15 +1,9 @@
 package ru.issuer.dao.model;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
 import javax.persistence.*;
 
-@Builder
-@ToString
-@EqualsAndHashCode
 @Entity
+@Table(name = "roles", schema = "public", catalog = "cdissuer")
 public class Roles {
     private int idRole;
     private String name;
@@ -24,7 +18,12 @@ public class Roles {
         this.permission = permission;
     }
 
+    public static RolesBuilder builder() {
+        return new RolesBuilder();
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_role", nullable = false)
     public int getIdRole() {
         return idRole;
@@ -56,4 +55,70 @@ public class Roles {
     }
 
 
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Roles)) return false;
+        final Roles other = (Roles) o;
+        if (!other.canEqual((Object) this)) return false;
+        if (this.getIdRole() != other.getIdRole()) return false;
+        final Object this$name = this.getName();
+        final Object other$name = other.getName();
+        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+        final Object this$permission = this.getPermission();
+        final Object other$permission = other.getPermission();
+        if (this$permission == null ? other$permission != null : !this$permission.equals(other$permission))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Roles;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        result = result * PRIME + this.getIdRole();
+        final Object $name = this.getName();
+        result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+        final Object $permission = this.getPermission();
+        result = result * PRIME + ($permission == null ? 43 : $permission.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "Roles(idRole=" + this.getIdRole() + ", name=" + this.getName() + ", permission=" + this.getPermission() + ")";
+    }
+
+    public static class RolesBuilder {
+        private int idRole;
+        private String name;
+        private Permissions permission;
+
+        RolesBuilder() {
+        }
+
+        public Roles.RolesBuilder idRole(int idRole) {
+            this.idRole = idRole;
+            return this;
+        }
+
+        public Roles.RolesBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Roles.RolesBuilder permission(Permissions permission) {
+            this.permission = permission;
+            return this;
+        }
+
+        public Roles build() {
+            return new Roles(idRole, name, permission);
+        }
+
+        public String toString() {
+            return "Roles.RolesBuilder(idRole=" + this.idRole + ", name=" + this.name + ", permission=" + this.permission + ")";
+        }
+    }
 }

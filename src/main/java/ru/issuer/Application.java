@@ -1,47 +1,87 @@
 package ru.issuer;
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.issuer.dao.manager.UserManager;
-import ru.issuer.dao.model.Users;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import ru.issuer.web.AuthInterceptor;
 
-import java.util.List;
+import java.util.Locale;
 
-
-public class Application {
+@SpringBootApplication
+@EnableTransactionManagement
+public class Application implements WebMvcConfigurer {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-        //Object userDaoImpl = context.getBean("userDaoImplement");
-        Object sessionFactory = context.getBean("sessionFactory");
-
-        System.out.println(sessionFactory);
-        SessionFactory factory = (SessionFactory) sessionFactory;
-        Session session = factory.openSession();
-        List<Users> from_users_ = session.createQuery("from Users", Users.class).list();
-        Logger logger = LoggerFactory.getLogger("test");
-        for (Users users : from_users_) {
-            logger.info(String.valueOf(users));
-        }
-        UserManager userRepository = (UserManager) context.getBean("umgr");
-        /*List<Users> allUsers = userRepository.getAllUsers();
-        for (Users allUser : allUsers) {
-            logger.info("repo: " + allUser);
-        }
-        Users build = Users.builder().login("test").email("aaa@ff.ru").password("aassdd").build();
-        try {
-            int user = userRepository.create(build);
-        } catch (DaoException e) {
-            logger.error(e, e);
-        }
-        logger.info("id: " + build);*/
-       /* try {
-            userRepository.insertUsers();
-        }catch (RuntimeException e) {
-            logger.error(e.getMessage(), e);
-        }*/
+        SpringApplication.run(Application.class, args);
     }
+
+    @Bean
+    public AuthInterceptor authInterceptor() {
+        return new AuthInterceptor();
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        CookieLocaleResolver slr = new CookieLocaleResolver();
+        slr.setDefaultLocale(Locale.getDefault());
+        return slr;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource rs = new ResourceBundleMessageSource();
+        rs.setBasename("messages");
+        rs.setDefaultEncoding("UTF-8");
+        rs.setUseCodeAsDefaultMessage(true);
+        return rs;
+    }
+
+    @Bean
+    public MessageSource validatorMessageSoruce() {
+        ResourceBundleMessageSource rs = new ResourceBundleMessageSource();
+        rs.setBasename("ValidationMessages");
+        rs.setDefaultEncoding("UTF-8");
+        rs.setUseCodeAsDefaultMessage(true);
+        return rs;
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean getValidator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(validatorMessageSoruce());
+        return bean;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(100000);
+        return commonsMultipartResolver;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor()).addPathPatterns("/*");
+        registry.addInterceptor(authInterceptor()).addPathPatterns("/*");
+    }
+
+
 }

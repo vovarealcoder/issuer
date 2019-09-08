@@ -3,13 +3,13 @@
 <head>
     <title th:text="#{loginform.title}">Вход</title>
     <meta charset="UTF-8"/>
-    <link href="../../resources/css/main.css" rel="stylesheet" th:href="@{/resources/css/main.css}"/>
+    <link href="../static/css/main.css" rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <div th:replace="header::header('CD ISSueR Custom')"></div>
 <div id="login-form">
     <label th:if="${error!=null}" th:text="#{loginform.loginerror}">Ошибка входа</label>
-    <form action="#" method="post" name="login_form" th:action="@{/login}">
+    <form action="#" method="post" name="login_form" th:action="@{/loginspring}">
 
         <label th:text="#{loginform.field.login}">Логин</label>
         <label><input class="element" name="login" type="text" value=""/>

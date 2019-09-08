@@ -28,6 +28,9 @@ public class SecurityService {
         return expr;
     }
 
+    public boolean userIsAdmin() {
+        return getCurrentUser().getRole().getPermission().getCanCreate();
+    }
     public Users getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {

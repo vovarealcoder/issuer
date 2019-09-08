@@ -1,17 +1,17 @@
 package ru.issuer.dao.repository;
 
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import ru.issuer.dao.model.Users;
 
-import java.util.List;
+@Repository
+public interface UserRepository extends CrudRepository<Users, Integer> {
 
-public interface UserRepository extends BaseRepository<Users> {
-    List<Users> getAllUsers();
-
-    Users getUserById(int id);
+    Users getUserByIdUser(int id);
 
     Users getUserByLogin(String login);
 
-    Users getUserByLoginPassword(String login, String password);
+    Users getUserByLoginAndPassword(String login, String password);
 
 }

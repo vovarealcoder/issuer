@@ -29,7 +29,7 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register(@ModelAttribute("sessionModel") SessionModel sessionModel) {
         if (sessionModel.isAutorized()) {
-            return new ModelAndView("redirect:/", null);
+            return new ModelAndView("redirect:/");
         }
         return new ModelAndView("register", "regUser", new RegisterModel());
     }

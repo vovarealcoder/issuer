@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{registerform.title}">Вход</title>
+    <meta charset="UTF-8"/>
+    <link href="../../css/main.css" rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div th:replace="header::header('CD ISSueR Register')"></div>
+<div id="login-form">
+    <form method="post" th:action="#{/register}" th:object="${regUser}">
+
+        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+            <p th:errors="*{login}" th:if="${#fields.hasErrors('login')}">login errors</p>
+            <label th:text="#{registerform.field.login}">Логин</label>
+            <label>
+                <input class="element" th:field="*{login}" th:placeholder="#{registerform.field.login}"/>
+            </label>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <p th:errors="*{password}" th:if="${#fields.hasErrors('password')}">password errors</p>
+            <label th:text="#{registerform.field.password}">Пароль</label>
+            <label>
+                <input class="element" th:field="*{password}" th:placeholder="#{registerform.field.password}"
+                       type="password"/>
+            </label>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <p th:errors="*{passwordRetype}" th:if="${#fields.hasErrors('passwordRetype')}">passwordRetype errors</p>
+            <label th:text="#{registerform.field.passwordRetype}">Повтор пароля</label>
+            <label>
+                <input class="element" th:field="*{passwordRetype}"
+                       th:placeholder="#{registerform.field.passwordRetype}"
+                       type="password"/>
+            </label>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <p th:errors="*{name}" th:if="${#fields.hasErrors('name')}">name errors</p>
+            <label th:text="#{registerform.field.name}">Имя</label>
+            <label>
+                <input class="element" th:field="*{name}" th:placeholder="#{registerform.field.name}"/>
+            </label>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <p th:errors="*{email}" th:if="${#fields.hasErrors('email')}">email errors</p>
+            <label th:text="#{registerform.field.email}">Email</label>
+            <label>
+                <input class="element" th:field="*{email}" th:placeholder="#{registerform.field.email}"/>
+            </label>
+        </div>
+
+        <div class="container-login100-form-btn">
+            <input id="login-submit" th:value="#{registerform.field.submit}" type="submit" value="Register"/>
+
+        </div>
+    </form>
+</div>
+<div th:replace="footer :: footer_fragment">
+    <footer>
+        © 2019 - Powered by CDIssuer
+    </footer>
+</div>
+</body>
+</html>
